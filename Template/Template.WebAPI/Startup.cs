@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Template.WebAPI.Settings;
 
 namespace Template.WebAPI
 {
@@ -27,7 +28,7 @@ namespace Template.WebAPI
         {
             services.AddDbContext<Template.Data.TemplateContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("TemplateAPI")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Template.Data.TemplateContext>();
 
@@ -79,6 +80,10 @@ namespace Template.WebAPI
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtToken:SecretKey"]))
                 };
             });
+
+            var jwtSettings = new JwtSettings();
+            Configuration.Bind(nameof(jwtSettings), jwtSettings);
+            services.AddSingleton(jwtSettings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

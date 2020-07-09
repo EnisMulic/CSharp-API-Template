@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Template.Model.Requests;
-using Template.Model.Responses;
+using Template.Contracts.Requests;
+using Template.Contracts.Responses;
+using Template.Data;
 
 namespace Template.WebAPI.Services.Interfaces
 {
@@ -13,6 +14,6 @@ namespace Template.WebAPI.Services.Interfaces
 
         Task<AuthenticationResult> AuthenticateAsync(UserAccountAuthenticationRequest request);
 
-        Task<AuthenticationResult> RefreshTokenAsync(string token, string refreshToken);
+        Task<AuthenticationResult> RefreshTokenAsync(RefreshTokenRequest request);
     }
 }

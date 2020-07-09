@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Template.Contracts;
-using Template.Model.Requests;
-using Template.Model.Responses;
+using Template.Contracts.Requests;
+using Template.Contracts.Responses;
 using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Controllers
@@ -20,7 +21,7 @@ namespace Template.WebAPI.Controllers
         }
 
         [HttpPost(ApiRoutes.UserAccount.Register)]
-        public async Task<AuthenticationResult> Register([FromBody] UserAccountRegistrationRequest request)
+        public async Task<IActionResult> Register([FromBody] UserAccountRegistrationRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -30,27 +31,79 @@ namespace Template.WebAPI.Controllers
                 });
             }
 
-            var authResponse = await _identityService.RegisterAsync(request.Email, request.Password);
+            var authResponse = await _userAccountService.RegisterAsync(request);
 
             if (!authResponse.Success)
             {
-                return BadRequest(new AuthFailedResponse
-                {
-                    Errors = authResponse.Errors
-                });
+                return BadRequest
+                (
+                    new AuthFailedResponse
+                    {
+                        Errors = authResponse.Errors
+                    }
+                );
             }
 
-            return Ok(new AuthSuccessResponse
-            {
-                Token = authResponse.Token,
-                RefreshToken = authResponse.RefreshToken
-            });
+            return Ok
+            (
+                new AuthSuccessResponse
+                {
+                    Token = authResponse.Token,
+                    RefreshToken = authResponse.RefreshToken
+                }
+            );
         }
 
         [HttpPost(ApiRoutes.UserAccount.Authenticate)]
-        public async Task<AuthenticationResult> Authenticate([FromBody] UserAccountAuthenticationRequest request)
+        public async Task<IActionResult> Authenticate([FromBody] UserAccountAuthenticationRequest request)
         {
-            return await _userAccountService.AuthenticateAsync(request);
+            var authResponse = await _userAccountService.AuthenticateAsync(request);
+
+            if (!authResponse.Success)
+            {
+                return BadRequest
+                (
+                    new AuthFailedResponse
+                    {
+                        Errors = authResponse.Errors
+                    }
+                );
+            }
+
+            return Ok
+            (
+                new AuthSuccessResponse
+                {
+                    Token = authResponse.Token,
+                    RefreshToken = authResponse.RefreshToken
+                }
+            );
+        }
+
+        [HttpPost(ApiRoutes.UserAccount.Refresh)]
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+        {
+            var authResponse = await _userAccountService.RefreshTokenAsync(request);
+
+            if (!authResponse.Success)
+            {
+                return BadRequest
+                (
+                    new AuthFailedResponse
+                    {
+                        Errors = authResponse.Errors
+                    }
+                );
+            }
+
+            return Ok
+            (
+                new AuthSuccessResponse
+                {
+                    Token = authResponse.Token,
+                    RefreshToken = authResponse.RefreshToken
+                }
+            );
         }
     }
 }
