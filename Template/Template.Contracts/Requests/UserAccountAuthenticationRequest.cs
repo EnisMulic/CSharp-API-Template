@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Template.Model.Requests
+namespace Template.Contracts.Requests
 {
     public class UserAccountAuthenticationRequest
     {

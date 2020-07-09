@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Cache;
 using System.Text;
 
-namespace Template.Model.Responses
+namespace Template.Contracts.Responses
 {
     public class PagedResponse<T>
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Template.Model.Responses
+namespace Template.Contracts.Responses
 {
     public class Response<T>
     {

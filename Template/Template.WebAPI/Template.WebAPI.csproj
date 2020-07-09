@@ -25,8 +25,8 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\..\..\source\repos\Template\Template.Data\Template.Data.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\..\..\source\repos\Template\Template.Model\Template.Contracts.csproj" />
+    <ProjectReference Include="..\Template.Contracts\Template.Contracts.csproj" />
+    <ProjectReference Include="..\Template.Data\Template.Data.csproj" />
   </ItemGroup>
 
 </Project>
