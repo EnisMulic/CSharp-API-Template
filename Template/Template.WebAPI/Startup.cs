@@ -10,6 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Template.Data;
+using Template.Services;
+using Template.WebAPI.Services.Implementations;
+using Template.WebAPI.Services.Interfaces;
 using Template.WebAPI.Settings;
 
 namespace Template.WebAPI
@@ -30,6 +34,7 @@ namespace Template.WebAPI
                 options.UseSqlServer(
                     Configuration.GetConnectionString("TemplateAPI")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<Template.Data.TemplateContext>();
 
             services.AddCors();
@@ -84,6 +89,9 @@ namespace Template.WebAPI
             var jwtSettings = new JwtSettings();
             Configuration.Bind(nameof(jwtSettings), jwtSettings);
             services.AddSingleton(jwtSettings);
+
+            //services.AddScoped<IUserAccountService, UserAccountService>();
+            services.AddScoped<ICRUDService<IdentityUser, IdentityUser, object, object>, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
