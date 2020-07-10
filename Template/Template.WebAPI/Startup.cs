@@ -67,6 +67,22 @@ namespace Template.WebAPI
                 });
             });
 
+            var jwtSettings = new JwtSettings();
+            Configuration.Bind(nameof(jwtSettings), jwtSettings);
+            services.AddSingleton(jwtSettings);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                RequireExpirationTime = false,
+                ValidateLifetime = true
+            };
+
+            services.AddSingleton(tokenValidationParameters);
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -74,23 +90,14 @@ namespace Template.WebAPI
 
             }).AddJwtBearer(options =>
             {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["JwtToken:Issuer"],
-                    ValidAudience = Configuration["JwtToken:Issuer"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtToken:SecretKey"]))
-                };
+                options.TokenValidationParameters = tokenValidationParameters;
             });
 
-            var jwtSettings = new JwtSettings();
-            Configuration.Bind(nameof(jwtSettings), jwtSettings);
-            services.AddSingleton(jwtSettings);
+            
 
-            //services.AddScoped<IUserAccountService, UserAccountService>();
+            
+
+            services.AddScoped<IUserAccountService, UserAccountService>();
             services.AddScoped<ICRUDService<IdentityUser, IdentityUser, object, object>, UserService>();
         }
 

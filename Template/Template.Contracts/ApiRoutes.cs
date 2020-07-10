@@ -16,5 +16,18 @@ namespace Template.Contracts
 
             public const string Refresh = Base + "/UserAccount/Refresh";
         }
+
+        public static class User
+        {
+            public const string Get = Base + "/User/Get";
+
+            public const string GetById = Base + "/User/Get";
+
+            public const string Post = Base + "/User/Post";
+
+            public const string Put = Base + "/User/Put";
+
+            public const string Delete = Base + "/User/Delete";
+        }
     }
 }

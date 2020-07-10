@@ -10,7 +10,6 @@ using Template.WebAPI.Services.Interfaces;
 namespace Template.WebAPI.Controllers
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
     [ApiController]
     public class UserAccountController : ControllerBase
     {
