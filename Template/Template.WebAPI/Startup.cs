@@ -99,7 +99,7 @@ namespace Template.WebAPI
             {
                 var accessor = provider.GetRequiredService<IHttpContextAccessor>();
                 var request = accessor.HttpContext.Request;
-                var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/", request.Path.ToUriComponent());
+                var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), request.Path.ToUriComponent());
                 return new UriService(absoluteUri);
             });
 
