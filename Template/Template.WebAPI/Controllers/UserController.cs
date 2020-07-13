@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Template.Data;
 using Template.Services;
+using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Controllers
 {
@@ -14,7 +16,8 @@ namespace Template.WebAPI.Controllers
     [ApiController]
     public class UserController : CRUDController<IdentityUser, IdentityUser, object, object>
     {
-        public UserController(ICRUDService<IdentityUser, IdentityUser, object, object> service) : base(service)
+        public UserController(ICRUDService<IdentityUser, IdentityUser, object, object> service, IUriService uriService, IMapper mapper) 
+            : base(service, uriService, mapper)
         {
         }
     }

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Template.Services;
+using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Controllers
 {
     public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
     {
         private readonly ICRUDService<T, TSearch, TInsert, TUpdate> _service = null;
-        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service) : base(service)
+        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service, IUriService uriService, IMapper mapper) : base(service, uriService, mapper)
         {
             _service = service;
         }

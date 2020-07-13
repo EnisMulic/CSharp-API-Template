@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -93,9 +94,15 @@ namespace Template.WebAPI
                 options.TokenValidationParameters = tokenValidationParameters;
             });
 
-            
 
-            
+            services.AddSingleton<IUriService>(provider =>
+            {
+                var accessor = provider.GetRequiredService<IHttpContextAccessor>();
+                var request = accessor.HttpContext.Request;
+                var absoluteUri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent(), "/", request.Path.ToUriComponent());
+                return new UriService(absoluteUri);
+            });
+
 
             services.AddScoped<IUserAccountService, UserAccountService>();
             services.AddScoped<ICRUDService<IdentityUser, IdentityUser, object, object>, UserService>();

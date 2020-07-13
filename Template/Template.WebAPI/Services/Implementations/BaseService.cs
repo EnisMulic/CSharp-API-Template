@@ -21,9 +21,18 @@ namespace Template.Services
             _mapper = mapper;
         }
 
-        public virtual async Task<List<TModel>> Get(TSearch search)
+        public virtual async Task<List<TModel>> Get(TSearch search, PaginationFilter pagination)
         {
-            var list = await _context.Set<TDatabase>().ToListAsync();
+            var query = _context.Set<TDatabase>().AsQueryable();
+
+            if(pagination != null)
+            {
+                var skip = (pagination.PageNumber - 1) * pagination.PageSize;
+                query = query.Skip(skip).Take(pagination.PageSize);
+            }
+
+
+            var list = await query.ToListAsync();
             return _mapper.Map<List<TModel>>(list);
         }
 
