@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Template.Contracts.Requests;
 using Template.Data;
 using Template.Services;
 using Template.WebAPI.Services.Implementations;
@@ -105,7 +106,7 @@ namespace Template.WebAPI
 
 
             services.AddScoped<IUserAccountService, UserAccountService>();
-            services.AddScoped<ICRUDService<IdentityUser, IdentityUser, object, object>, UserService>();
+            services.AddScoped<ICRUDService<IdentityUser, UserSearchRequest, object, object>, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
