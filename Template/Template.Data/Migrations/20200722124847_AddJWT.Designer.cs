@@ -10,8 +10,8 @@ using Template.Data;
 namespace Template.Data.Migrations
 {
     [DbContext(typeof(TemplateContext))]
-    [Migration("20200709155946_AddJwt")]
-    partial class AddJwt
+    [Migration("20200722124847_AddJWT")]
+    partial class AddJWT
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
