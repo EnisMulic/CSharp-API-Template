@@ -19,15 +19,15 @@ namespace Template.Contracts
 
         public static class User
         {
-            public const string Get = Base + "/User/Get";
+            public const string Get = Base + "/User";
 
-            public const string GetById = Base + "/User/Get";
+            public const string GetById = Base + "/User";
 
-            public const string Post = Base + "/User/Post";
+            public const string Post = Base + "/User";
 
-            public const string Put = Base + "/User/Put";
+            public const string Put = Base + "/User";
 
-            public const string Delete = Base + "/User/Delete";
+            public const string Delete = Base + "/User";
         }
     }
 }
