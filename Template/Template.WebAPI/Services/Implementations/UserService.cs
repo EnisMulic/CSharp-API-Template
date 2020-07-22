@@ -50,9 +50,9 @@ namespace Template.WebAPI.Services.Implementations
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber
             };
-            var newUser = await _userManager.CreateAsync(user, request.Password);
+            await _userManager.CreateAsync(user, request.Password);
 
-            await _context.AddAsync(newUser);
+            await _context.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return user;
