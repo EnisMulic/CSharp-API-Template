@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
@@ -50,7 +46,7 @@ namespace Template.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(string id)
         {
             return await _service.GetById(id);
         }

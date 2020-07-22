@@ -36,7 +36,7 @@ namespace Template.Services
             return _mapper.Map<List<TModel>>(list);
         }
 
-        public virtual async Task<TModel> GetById(int id)
+        public virtual async Task<TModel> GetById(string id)
         {
             var entity = await _context.Set<TDatabase>().FindAsync(id);
             return _mapper.Map<TModel>(entity);

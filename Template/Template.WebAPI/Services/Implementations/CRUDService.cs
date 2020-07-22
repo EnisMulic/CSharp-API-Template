@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Template.Data;
 using Template.Services;
@@ -29,7 +27,7 @@ namespace Lyra.WebAPI.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task<TModel> Update(int id, TUpdate request)
+        public virtual async Task<TModel> Update(string id, TUpdate request)
         {
             var entity = _context.Set<TDatabase>().Find(id);
             _context.Set<TDatabase>().Attach(entity);
@@ -42,7 +40,7 @@ namespace Lyra.WebAPI.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task<bool> Delete(int id)
+        public virtual async Task<bool> Delete(string id)
         {
             var entity = await _context.Set<TDatabase>().FindAsync(id);
 
@@ -53,7 +51,7 @@ namespace Lyra.WebAPI.Services
 
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Template.Services;
 using Template.WebAPI.Services.Interfaces;
@@ -25,13 +21,13 @@ namespace Template.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<T> Update(int id, [FromBody]TUpdate request)
+        public async Task<T> Update(string id, [FromBody]TUpdate request)
         {
             return await _service.Update(id, request);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<bool> Delete(string id)
         {
             return await _service.Delete(id);
         }
