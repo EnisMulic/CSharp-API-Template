@@ -13,7 +13,7 @@ using Template.Services;
 
 namespace Template.WebAPI.Services.Implementations
 {
-    public class UserService : CRUDService<IdentityUser, UserSearchRequest, IdentityUser, UserInsertRequest, object>
+    public class UserService : CRUDService<IdentityUser, UserSearchRequest, IdentityUser, UserInsertRequest, UserUpdateRequest>
     {
         private readonly TemplateContext _context;
         private readonly UserManager<IdentityUser> _userManager;

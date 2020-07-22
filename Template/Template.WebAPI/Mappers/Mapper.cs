@@ -13,6 +13,8 @@ namespace Template.WebAPI.Mappers
         public Mapper()
         {
             CreateMap<Template.Contracts.Requests.PaginationQuery, Template.Data.PaginationFilter>();
+            CreateMap<IdentityUser, UserInsertRequest>().ReverseMap();
+            CreateMap<IdentityUser, UserUpdateRequest>().ReverseMap();
         }
     }
 }

@@ -106,7 +106,7 @@ namespace Template.WebAPI
 
 
             services.AddScoped<IUserAccountService, UserAccountService>();
-            services.AddScoped<ICRUDService<IdentityUser, UserSearchRequest, UserInsertRequest, object>, UserService>();
+            services.AddScoped<ICRUDService<IdentityUser, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

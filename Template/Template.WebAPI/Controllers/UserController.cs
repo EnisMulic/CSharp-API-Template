@@ -15,9 +15,9 @@ namespace Template.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : CRUDController<IdentityUser, UserSearchRequest, UserInsertRequest, object>
+    public class UserController : CRUDController<IdentityUser, UserSearchRequest, UserInsertRequest, UserUpdateRequest>
     {
-        public UserController(ICRUDService<IdentityUser, UserSearchRequest, UserInsertRequest, object> service, IUriService uriService, IMapper mapper) 
+        public UserController(ICRUDService<IdentityUser, UserSearchRequest, UserInsertRequest, UserUpdateRequest> service, IUriService uriService, IMapper mapper) 
             : base(service, uriService, mapper)
         {
         }
