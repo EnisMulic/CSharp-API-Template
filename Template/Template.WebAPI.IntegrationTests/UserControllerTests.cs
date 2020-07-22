@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Template.Contracts;
+using Template.Contracts.Responses;
 using Xunit;
 
 namespace Template.WebAPI.IntegrationTests
@@ -25,7 +26,8 @@ namespace Template.WebAPI.IntegrationTests
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
-            (await response.Content.ReadAsAsync<List<IdentityUser>>()).Should().BeEmpty();
+            // Returns one user that just registered
+            (await response.Content.ReadAsAsync<PagedResponse<IdentityUser>>()).Data.Should().HaveCount(1);
         }
     }
 }
