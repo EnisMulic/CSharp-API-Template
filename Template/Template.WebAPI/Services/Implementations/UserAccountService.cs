@@ -17,7 +17,7 @@ namespace Template.WebAPI.Services.Implementations
 {
     public class UserAccountService : IUserAccountService
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
@@ -25,7 +25,7 @@ namespace Template.WebAPI.Services.Implementations
 
         public UserAccountService
         (
-            UserManager<IdentityUser> userManager, 
+            UserManager<User> userManager, 
             RoleManager<IdentityRole> roleManager, 
             JwtSettings jwtSettings, 
             TokenValidationParameters tokenValidationParameters, 
@@ -163,7 +163,7 @@ namespace Template.WebAPI.Services.Implementations
             }
 
             var newUserId = Guid.NewGuid();
-            var newUser = new IdentityUser
+            var newUser = new User
             {
                 Id = newUserId.ToString(),
                 Email = request.Email,
@@ -183,7 +183,7 @@ namespace Template.WebAPI.Services.Implementations
             return await GenerateAuthenticationResultForUserAsync(newUser);
         }
 
-        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(IdentityUser user)
+        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);

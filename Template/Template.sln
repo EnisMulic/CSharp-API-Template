@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Data", "Template.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Contracts", "Template.Contracts\Template.Contracts.csproj", "{5FC60ABE-CFEB-4B27-8910-C71907D3F748}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.WebAPI.IntegrationTests", "Template.WebAPI.IntegrationTests\Template.WebAPI.IntegrationTests.csproj", "{60D50F40-40FA-4CB9-91BB-993553308D05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI.IntegrationTests", "Template.WebAPI.IntegrationTests\Template.WebAPI.IntegrationTests.csproj", "{60D50F40-40FA-4CB9-91BB-993553308D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

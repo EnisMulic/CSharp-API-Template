@@ -13,21 +13,21 @@ using Template.Services;
 
 namespace Template.WebAPI.Services.Implementations
 {
-    public class UserService : CRUDService<IdentityUser, UserSearchRequest, IdentityUser, UserInsertRequest, UserUpdateRequest>
+    public class UserService : CRUDService<User, UserSearchRequest, User, UserInsertRequest, UserUpdateRequest>
     {
         private readonly TemplateContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        public UserService(TemplateContext context, UserManager<IdentityUser> userManager, IMapper mapper) : base(context, mapper)
+        public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper) : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
             _userManager = userManager;
         }
 
-        public async override Task<List<IdentityUser>> Get(UserSearchRequest search, PaginationFilter pagination)
+        public async override Task<List<User>> Get(UserSearchRequest search, PaginationFilter pagination)
         {
-            var query = _context.Set<IdentityUser>().AsQueryable();
+            var query = _context.Set<User>().AsQueryable();
 
             query = ApplyFilterToQuery(query, search);
 
@@ -39,12 +39,12 @@ namespace Template.WebAPI.Services.Implementations
 
 
             var list = await query.ToListAsync();
-            return _mapper.Map<List<IdentityUser>>(list);
+            return _mapper.Map<List<User>>(list);
         }
 
-        public async override Task<IdentityUser> Insert(UserInsertRequest request)
+        public async override Task<User> Insert(UserInsertRequest request)
         {
-            var user = new IdentityUser()
+            var user = new User()
             {
                 UserName = request.UserName,
                 Email = request.Email,
@@ -58,7 +58,7 @@ namespace Template.WebAPI.Services.Implementations
             return user;
         }
 
-        private IQueryable<IdentityUser> ApplyFilterToQuery(IQueryable<IdentityUser> query, UserSearchRequest filter)
+        private IQueryable<User> ApplyFilterToQuery(IQueryable<User> query, UserSearchRequest filter)
         {
             if(!string.IsNullOrEmpty(filter?.Id))
             {

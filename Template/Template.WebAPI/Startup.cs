@@ -32,12 +32,12 @@ namespace Template.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Template.Data.TemplateContext>(options =>
+            services.AddDbContext<TemplateContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("TemplateAPI")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<Template.Data.TemplateContext>();
+                .AddEntityFrameworkStores<TemplateContext>();
 
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
@@ -106,7 +106,7 @@ namespace Template.WebAPI
 
 
             services.AddScoped<IUserAccountService, UserAccountService>();
-            services.AddScoped<ICRUDService<IdentityUser, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
+            services.AddScoped<ICRUDService<User, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

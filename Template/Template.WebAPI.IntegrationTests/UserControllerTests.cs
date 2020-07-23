@@ -1,14 +1,10 @@
 ﻿using FluentAssertions;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Template.Contracts;
 using Template.Contracts.Responses;
+using Template.Data;
 using Xunit;
 
 namespace Template.WebAPI.IntegrationTests
@@ -27,7 +23,7 @@ namespace Template.WebAPI.IntegrationTests
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             // Returns one user that just registered
-            (await response.Content.ReadAsAsync<PagedResponse<IdentityUser>>()).Data.Should().HaveCount(1);
+            (await response.Content.ReadAsAsync<PagedResponse<User>>()).Data.Should().HaveCount(1);
         }
     }
 }

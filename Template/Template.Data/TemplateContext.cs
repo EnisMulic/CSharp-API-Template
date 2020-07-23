@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Template.Data
 {
-    public class TemplateContext : IdentityDbContext
+    public class TemplateContext : IdentityDbContext<User>
     {
         public TemplateContext(DbContextOptions<TemplateContext> options)
             : base(options)
