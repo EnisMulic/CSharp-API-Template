@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Template.Contracts;
 using Template.Contracts.Responses;
-using Template.Data;
+using Template.Domain;
 using Xunit;
 
 namespace Template.WebAPI.IntegrationTests

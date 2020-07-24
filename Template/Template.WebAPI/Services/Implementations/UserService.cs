@@ -2,14 +2,12 @@
 using Lyra.WebAPI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Data;
-using Template.Services;
+using Template.Domain;
 
 namespace Template.WebAPI.Services.Implementations
 {

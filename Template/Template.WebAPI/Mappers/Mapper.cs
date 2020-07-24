@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Template.Contracts.Requests;
-using Template.Data;
+using Template.Domain;
 
 namespace Template.WebAPI.Mappers
 {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Template.Data
+namespace Template.Domain
 {
     public class User : IdentityUser
     {

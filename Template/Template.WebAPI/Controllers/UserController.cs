@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Template.Contracts.Requests;
-using Template.Data;
+using Template.Domain;
 using Template.Services;
 using Template.WebAPI.Services.Interfaces;
 
