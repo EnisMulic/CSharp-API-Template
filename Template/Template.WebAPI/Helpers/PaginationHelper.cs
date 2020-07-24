@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
 using Template.Data;
+using Template.Services;
 using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Helpers
@@ -22,7 +23,9 @@ namespace Template.WebAPI.Helpers
                 : null;
 
             var firstPage = uriService.GetUri(new PaginationQuery(1, pagination.PageSize)).ToString();
-            
+
+            int LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(response.Count) / pagination.PageSize));
+            var lastPage = uriService.GetUri(new PaginationQuery(, pagination.PageSize)).ToString();
 
             return new PagedResponse<T>
             {
@@ -31,7 +34,8 @@ namespace Template.WebAPI.Helpers
                 PageSize = pagination.PageSize >= 1 ? pagination.PageSize : (int?)null,
                 NextPage = response.Any() ? nextPage : null,
                 PreviousPage = previousPage,
-                FirstPage = firstPage
+                FirstPage = firstPage,
+                LastPage = lastPage
             };
         }
     }
