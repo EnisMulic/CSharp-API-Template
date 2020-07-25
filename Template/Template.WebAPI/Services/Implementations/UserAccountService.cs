@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Template.Contracts.Requests;
-using Template.Data;
+using Template.Database;
 using Template.Domain;
 using Template.WebAPI.Services.Interfaces;
 using Template.WebAPI.Settings;

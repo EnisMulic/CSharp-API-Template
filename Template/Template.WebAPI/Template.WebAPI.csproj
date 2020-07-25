@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Template.Contracts\Template.Contracts.csproj" />
-    <ProjectReference Include="..\Template.Data\Template.Data.csproj" />
+    <ProjectReference Include="..\Template.Data\Template.Database.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ namespace Template.WebAPI.Mappers
     {
         public Mapper()
         {
-            CreateMap<Template.Contracts.Requests.PaginationQuery, Template.Data.PaginationFilter>();
+            CreateMap<Template.Contracts.Requests.PaginationQuery, Template.Database.PaginationFilter>();
             CreateMap<User, UserInsertRequest>().ReverseMap();
             CreateMap<User, UserUpdateRequest>().ReverseMap();
             CreateMap<User, UserResponse>();

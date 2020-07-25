@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Template.Data.Migrations
+namespace Template.Database.Migrations
 {
     public partial class CustomUserClass : Migration
     {

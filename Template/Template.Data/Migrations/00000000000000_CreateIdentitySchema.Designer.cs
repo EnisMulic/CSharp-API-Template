@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Template.Data.Migrations
+namespace Template.Database.Migrations
 {
     [DbContext(typeof(TemplateContext))]
     [Migration("00000000000000_CreateIdentitySchema")]

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Template.Contracts;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.Data;
+using Template.Database;
 
 namespace Template.WebAPI.IntegrationTests
 {

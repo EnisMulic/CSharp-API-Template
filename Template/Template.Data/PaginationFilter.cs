@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Template.Data
+namespace Template.Database
 {
     public class PaginationFilter
     {

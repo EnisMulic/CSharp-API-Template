@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
-using Template.Data;
+using Template.Database;
 using Template.Services;
 
 namespace Lyra.WebAPI.Services

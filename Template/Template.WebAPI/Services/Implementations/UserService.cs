@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.Data;
+using Template.Database;
 using Template.Domain;
 
 namespace Template.WebAPI.Services.Implementations

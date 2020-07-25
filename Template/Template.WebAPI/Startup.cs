@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.Data;
+using Template.Database;
 using Template.Domain;
 using Template.Services;
 using Template.WebAPI.Services.Implementations;
