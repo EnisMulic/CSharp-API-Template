@@ -25,7 +25,7 @@ namespace Template.WebAPI.Helpers
             var firstPage = uriService.GetUri(new PaginationQuery(1, pagination.PageSize)).ToString();
 
             int LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(response.Count) / pagination.PageSize));
-            var lastPage = uriService.GetUri(new PaginationQuery(, pagination.PageSize)).ToString();
+            var lastPage = uriService.GetUri(new PaginationQuery(LastPageNumber, pagination.PageSize)).ToString();
 
             return new PagedResponse<T>
             {

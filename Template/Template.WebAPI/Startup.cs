@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Template.Contracts.Requests;
+using Template.Contracts.Responses;
 using Template.Data;
 using Template.Domain;
 using Template.Services;
@@ -107,7 +108,7 @@ namespace Template.WebAPI
 
 
             services.AddScoped<IUserAccountService, UserAccountService>();
-            services.AddScoped<ICRUDService<User, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
+            services.AddScoped<ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
+using Template.Contracts.Responses;
 using Template.Data;
 using Template.Domain;
 
 namespace Template.WebAPI.Services.Implementations
 {
-    public class UserService : CRUDService<User, UserSearchRequest, User, UserInsertRequest, UserUpdateRequest>
+    public class UserService : CRUDService<UserResponse, UserSearchRequest, User, UserInsertRequest, UserUpdateRequest>
     {
         private readonly TemplateContext _context;
         private readonly UserManager<User> _userManager;
@@ -23,7 +24,7 @@ namespace Template.WebAPI.Services.Implementations
             _userManager = userManager;
         }
 
-        public async override Task<List<User>> Get(UserSearchRequest search, PaginationFilter pagination)
+        public async override Task<List<UserResponse>> Get(UserSearchRequest search, PaginationFilter pagination)
         {
             var query = _context.Set<User>().AsQueryable();
 
@@ -37,10 +38,10 @@ namespace Template.WebAPI.Services.Implementations
 
 
             var list = await query.ToListAsync();
-            return _mapper.Map<List<User>>(list);
+            return _mapper.Map<List<UserResponse>>(list);
         }
 
-        public async override Task<User> Insert(UserInsertRequest request)
+        public async override Task<UserResponse> Insert(UserInsertRequest request)
         {
             var user = new User()
             {
@@ -53,7 +54,7 @@ namespace Template.WebAPI.Services.Implementations
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            return user;
+            return _mapper.Map<UserResponse>(user);
         }
 
         private IQueryable<User> ApplyFilterToQuery(IQueryable<User> query, UserSearchRequest filter)
