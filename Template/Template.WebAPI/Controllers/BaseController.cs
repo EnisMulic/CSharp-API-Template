@@ -30,19 +30,16 @@ namespace Template.WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]TSearch search, [FromQuery]PaginationQuery paginationQuery)
         {
-            //return await _service.Get(search);
-            Microsoft.AspNetCore.Http.PathString path = HttpContext.Request.Path;
-            
             var pagination = _mapper.Map<PaginationFilter>(paginationQuery);
             var response = await _service.Get(search, pagination);
 
             if (pagination == null || pagination.PageNumber < 1 || pagination.PageSize < 1)
             {
-                return Ok(new PagedResponse<T>(response));
+                return Ok(response);
             }
 
-            var paginationResponse = PaginationHelper.CreatePaginatedResponse(_uriService, pagination, response);
-            return Ok(paginationResponse);
+            
+            return Ok(response);
         }
 
         [HttpGet("{id}")]

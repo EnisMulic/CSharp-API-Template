@@ -9,6 +9,7 @@ using Template.Contracts.Requests;
 using Template.Contracts.Responses;
 using Template.Database;
 using Template.Domain;
+using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Services.Implementations
 {
@@ -17,28 +18,29 @@ namespace Template.WebAPI.Services.Implementations
         private readonly TemplateContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper) : base(context, mapper)
+        private readonly IUriService _uriService;
+        public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper, IUriService uriService) 
+            : base(context, mapper, uriService)
         {
             _context = context;
             _mapper = mapper;
             _userManager = userManager;
         }
 
-        public async override Task<List<UserResponse>> Get(UserSearchRequest search, PaginationFilter pagination)
+        public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationFilter pagination)
         {
             var query = _context.Set<User>().AsQueryable();
 
             query = ApplyFilterToQuery(query, search);
 
-            if (pagination != null)
-            {
-                var skip = (pagination.PageNumber - 1) * pagination.PageSize;
-                query = query.Skip(skip).Take(pagination.PageSize);
-            }
+
+            var skip = (pagination.PageNumber - 1) * pagination.PageSize;
+            query = query.Skip(skip).Take(pagination.PageSize);
 
 
             var list = await query.ToListAsync();
-            return _mapper.Map<List<UserResponse>>(list);
+            var pagedList = await base.GetPagedResponse(_mapper.Map<List<UserResponse>>(list), pagination);
+            return pagedList;
         }
 
         public async override Task<UserResponse> Insert(UserInsertRequest request)

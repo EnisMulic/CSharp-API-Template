@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Template.Database;
 using Template.Services;
+using Template.WebAPI.Services.Interfaces;
 
 namespace Lyra.WebAPI.Services
 {
@@ -12,7 +13,7 @@ namespace Lyra.WebAPI.Services
     {
         private readonly TemplateContext _context;
         private readonly IMapper _mapper;
-        public CRUDService(TemplateContext context, IMapper mapper) : base(context, mapper)
+        public CRUDService(TemplateContext context, IMapper mapper, IUriService uriService) : base(context, mapper, uriService)
         {
             _context = context;
             _mapper = mapper;

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Template.Contracts\Template.Contracts.csproj" />
+    <ProjectReference Include="..\Template.Database\Template.Database.csproj" />
     <ProjectReference Include="..\Template.Data\Template.Database.csproj" />
   </ItemGroup>
 
