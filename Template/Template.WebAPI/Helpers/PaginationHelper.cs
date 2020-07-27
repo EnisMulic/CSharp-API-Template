@@ -16,7 +16,9 @@ namespace Template.WebAPI.Helpers
 
         public static PagedResponse<T> CreatePaginatedResponse<T>(IUriService uriService, PaginationFilter pagination, List<T> response, int count)
         {
-            var nextPage = pagination.PageNumber >= 1
+            int LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pagination.PageSize));
+
+            var nextPage = pagination.PageNumber >= 1 && pagination.PageNumber < LastPageNumber
                 ? uriService.GetUri(new PaginationQuery(pagination.PageNumber + 1, pagination.PageSize)).ToString()
                 : null;
 
@@ -24,11 +26,13 @@ namespace Template.WebAPI.Helpers
                 ? uriService.GetUri(new PaginationQuery(pagination.PageNumber - 1, pagination.PageSize)).ToString()
                 : null;
 
-            var firstPage = uriService.GetUri(new PaginationQuery(1, pagination.PageSize)).ToString();
+            var firstPage = pagination.PageNumber > 1
+                ? uriService.GetUri(new PaginationQuery(1, pagination.PageSize)).ToString()
+                : null;
 
-
-            int LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pagination.PageSize));
-            var lastPage = uriService.GetUri(new PaginationQuery(LastPageNumber, pagination.PageSize)).ToString();
+            var lastPage = pagination.PageNumber < LastPageNumber
+                ? uriService.GetUri(new PaginationQuery(LastPageNumber, pagination.PageSize)).ToString()
+                : null;
 
             return new PagedResponse<T>
             {
