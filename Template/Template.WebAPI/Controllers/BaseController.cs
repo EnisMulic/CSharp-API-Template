@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Composition;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
@@ -17,35 +18,39 @@ namespace Template.WebAPI.Controllers
     public class BaseController<T, TSearch> : ControllerBase
     {
         private readonly IBaseService<T, TSearch> _service;
-        private readonly IUriService _uriService;
         private readonly IMapper _mapper;
 
-        public BaseController(IBaseService<T, TSearch> service, IUriService uriService, IMapper mapper)
+        public BaseController(IBaseService<T, TSearch> service, IMapper mapper)
         {
             _service = service;
-            _uriService = uriService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery]TSearch search, [FromQuery]PaginationQuery paginationQuery)
+        public async Task<ActionResult<PagedResponse<T>>> Get([FromQuery]TSearch search, [FromQuery]PaginationQuery paginationQuery)
         {
             var pagination = _mapper.Map<PaginationFilter>(paginationQuery);
             var response = await _service.Get(search, pagination);
 
-            if (pagination == null || pagination.PageNumber < 1 || pagination.PageSize < 1)
+            if(response == null)
             {
-                return Ok(response);
+                return NotFound();
             }
 
-            
             return Ok(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<T> GetById(string id)
+        public async Task<ActionResult<T>> GetById(string id)
         {
-            return await _service.GetById(id);
+            var response = await _service.GetById(id);
+
+            if(response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
         }
     }
 }

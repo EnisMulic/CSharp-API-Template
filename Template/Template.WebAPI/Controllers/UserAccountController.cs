@@ -26,7 +26,7 @@ namespace Template.WebAPI.Controllers
             {
                 return BadRequest(new AuthFailedResponse
                 {
-                    Errors = ModelState.Values.SelectMany(x => x.Errors.Select(xx => xx.ErrorMessage))
+                    Errors = ModelState.Values.SelectMany(i => i.Errors.Select(j => j.ErrorMessage))
                 });
             }
 

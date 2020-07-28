@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Template.Services;
@@ -9,27 +10,47 @@ namespace Template.WebAPI.Controllers
     public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
     {
         private readonly ICRUDService<T, TSearch, TInsert, TUpdate> _service = null;
-        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service, IUriService uriService, IMapper mapper) : base(service, uriService, mapper)
+        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service, IMapper mapper) : base(service, mapper)
         {
             _service = service;
         }
 
         [HttpPost]
-        public async Task<T> Insert(TInsert request)
+        public async Task<ActionResult<T>> Insert(TInsert request)
         {
-            return await _service.Insert(request);
+            var response = await _service.Insert(request);
+            if(response == null)
+            {
+                return BadRequest();
+            }
+
+            Microsoft.AspNetCore.Http.PathString path = HttpContext.Request.Path;
+            return Created(path, response);
         }
 
         [HttpPut("{id}")]
-        public async Task<T> Update(string id, [FromBody]TUpdate request)
+        public async Task<ActionResult<T>> Update(string id, [FromBody]TUpdate request)
         {
-            return await _service.Update(id, request);
+            var response = await _service.Update(id, request);
+            if(response == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(string id)
+        public async Task<ActionResult<bool>> Delete(string id)
         {
-            return await _service.Delete(id);
+            var response = await _service.Delete(id);
+
+            if(response == false)
+            {
+                return NoContent();
+            }
+
+            return Ok(response);
         }
     }
 }

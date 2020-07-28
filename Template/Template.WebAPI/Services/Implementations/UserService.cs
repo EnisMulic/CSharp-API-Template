@@ -45,15 +45,10 @@ namespace Template.WebAPI.Services.Implementations
 
         public async override Task<UserResponse> Insert(UserInsertRequest request)
         {
-            var user = new User()
-            {
-                UserName = request.UserName,
-                Email = request.Email,
-                PhoneNumber = request.PhoneNumber
-            };
+            var user = _mapper.Map<User>(request);
             await _userManager.CreateAsync(user, request.Password);
 
-            await _context.AddAsync(user);
+            //await _context.AddAsync(user);
             await _context.SaveChangesAsync();
 
             return _mapper.Map<UserResponse>(user);
