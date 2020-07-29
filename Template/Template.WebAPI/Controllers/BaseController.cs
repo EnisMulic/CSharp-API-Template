@@ -27,9 +27,8 @@ namespace Template.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagedResponse<T>>> Get([FromQuery]TSearch search, [FromQuery]PaginationQuery paginationQuery)
+        public async Task<ActionResult<PagedResponse<T>>> Get([FromQuery]TSearch search, [FromQuery]PaginationQuery pagination)
         {
-            var pagination = _mapper.Map<PaginationFilter>(paginationQuery);
             var response = await _service.Get(search, pagination);
 
             if(response == null)

@@ -18,7 +18,7 @@ namespace Template.WebAPI.Services.Implementations
         private readonly TemplateContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
-        private readonly IUriService _uriService;
+
         public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper, IUriService uriService) 
             : base(context, mapper, uriService)
         {
@@ -27,7 +27,7 @@ namespace Template.WebAPI.Services.Implementations
             _userManager = userManager;
         }
 
-        public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationFilter pagination)
+        public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationQuery pagination)
         {
             var query = _context.Set<User>().AsQueryable();
 

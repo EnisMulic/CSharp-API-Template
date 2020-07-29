@@ -1,12 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.Database;
-using Template.Services;
 using Template.WebAPI.Services.Interfaces;
 
 namespace Template.WebAPI.Helpers
@@ -14,7 +10,7 @@ namespace Template.WebAPI.Helpers
     public class PaginationHelper
     {
 
-        public static PagedResponse<T> CreatePaginatedResponse<T>(IUriService uriService, PaginationFilter pagination, List<T> response, int count)
+        public static PagedResponse<T> CreatePaginatedResponse<T>(IUriService uriService, PaginationQuery pagination, List<T> response, int count)
         {
             int LastPageNumber = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(count) / pagination.PageSize));
 

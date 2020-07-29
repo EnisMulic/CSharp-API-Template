@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Template.Contracts.Requests;
 using Template.Contracts.Responses;
 using Template.Database;
 using Template.WebAPI.Helpers;
@@ -32,7 +33,7 @@ namespace Template.Services
             _uriService = uriService;
         }
 
-        public virtual async Task<PagedResponse<TModel>> Get(TSearch search, PaginationFilter pagination)
+        public virtual async Task<PagedResponse<TModel>> Get(TSearch search, PaginationQuery pagination)
         {
             var query = _context.Set<TDatabase>()
                 .AsNoTracking()
@@ -52,7 +53,7 @@ namespace Template.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        protected async Task<PagedResponse<TModel>> GetPagedResponse(List<TModel> list, PaginationFilter pagination)
+        protected async Task<PagedResponse<TModel>> GetPagedResponse(List<TModel> list, PaginationQuery pagination)
         {
             int count = await _context.Set<TDatabase>()
                 .AsNoTracking()
