@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Template.Database
+namespace Template.Domain
 {
     public class AuthenticationResult
     {

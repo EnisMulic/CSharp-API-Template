@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Template.Contracts.Requests;
-using Template.Contracts.Responses;
-using Template.Database;
+using Template.Domain;
 
 namespace Template.WebAPI.Services.Interfaces
 {
