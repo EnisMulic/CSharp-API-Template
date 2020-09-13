@@ -2,7 +2,7 @@
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
 
-namespace Template.Services
+namespace Template.Core.Interfaces
 {
     public interface IBaseService<T, TSearch>
     {

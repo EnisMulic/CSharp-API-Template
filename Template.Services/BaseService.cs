@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
+using Template.Core.Helpers;
+using Template.Core.Interfaces;
 using Template.Database;
-using Template.WebAPI.Helpers;
-using Template.WebAPI.Services.Interfaces;
 
 namespace Template.Services
 {

@@ -13,12 +13,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
+using Template.Core.Interfaces;
+using Template.Core.Settings;
 using Template.Database;
 using Template.Domain;
 using Template.Services;
-using Template.WebAPI.Services.Implementations;
-using Template.WebAPI.Services.Interfaces;
-using Template.WebAPI.Settings;
 
 namespace Template.WebAPI
 {

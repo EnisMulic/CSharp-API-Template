@@ -1,9 +1,7 @@
-﻿using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Template.Services;
-using Template.WebAPI.Services.Interfaces;
+using Template.Core.Interfaces;
 
 namespace Template.WebAPI.Controllers
 {

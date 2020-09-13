@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Template.Contracts.Requests;
-using Template.WebAPI.Services.Interfaces;
+using Template.Core.Interfaces;
 
-namespace Template.WebAPI.Services.Implementations
+namespace Template.Services
 {
     public class UriService : IUriService
     {

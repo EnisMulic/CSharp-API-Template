@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Lyra.WebAPI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,11 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
+using Template.Core.Interfaces;
 using Template.Database;
 using Template.Domain;
-using Template.WebAPI.Services.Interfaces;
 
-namespace Template.WebAPI.Services.Implementations
+namespace Template.Services
 {
     public class UserService : CRUDService<UserResponse, UserSearchRequest, User, UserInsertRequest, UserUpdateRequest>
     {

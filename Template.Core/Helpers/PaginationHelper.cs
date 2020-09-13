@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.WebAPI.Services.Interfaces;
+using Template.Core.Interfaces;
 
-namespace Template.WebAPI.Helpers
+namespace Template.Core.Helpers
 {
     public class PaginationHelper
     {

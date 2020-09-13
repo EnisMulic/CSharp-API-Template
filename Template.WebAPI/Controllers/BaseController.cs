@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Composition;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 using Template.Contracts.Responses;
-using Template.Database;
-using Template.Services;
-using Template.WebAPI.Helpers;
-using Template.WebAPI.Services.Interfaces;
+using Template.Core.Interfaces;
 
 namespace Template.WebAPI.Controllers
 {

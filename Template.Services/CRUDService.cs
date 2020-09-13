@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
+using Template.Core.Interfaces;
 using Template.Database;
 using Template.Services;
-using Template.WebAPI.Services.Interfaces;
 
-namespace Lyra.WebAPI.Services
+namespace Template.Services
 {
     public class CRUDService<TModel, TSearch, TDatabase, TInsert, TUpdate> :
         BaseService<TModel, TSearch, TDatabase>, ICRUDService<TModel, TSearch, TInsert, TUpdate>

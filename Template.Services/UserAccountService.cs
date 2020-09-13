@@ -9,12 +9,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Template.Contracts.Requests;
+using Template.Core.Interfaces;
+using Template.Core.Settings;
 using Template.Database;
 using Template.Domain;
-using Template.WebAPI.Services.Interfaces;
-using Template.WebAPI.Settings;
 
-namespace Template.WebAPI.Services.Implementations
+
+namespace Template.Services
 {
     public class UserAccountService : IUserAccountService
     {

@@ -2,7 +2,7 @@
 using Template.Contracts.Requests;
 using Template.Domain;
 
-namespace Template.WebAPI.Services.Interfaces
+namespace Template.Core.Interfaces
 {
     public interface IUserAccountService
     {

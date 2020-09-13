@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.Requests;
 
-namespace Template.WebAPI.Services.Interfaces
+namespace Template.Core.Interfaces
 {
     public interface IUriService
     {
