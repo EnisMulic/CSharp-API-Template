@@ -3,11 +3,11 @@ using Template.Contracts.Requests;
 using Template.Contracts.Responses;
 using Template.Domain;
 
-namespace Template.WebAPI.Mappers
+namespace Template.Core.Mappings
 {
-    public class Mapper : Profile
+    public class UserProfile : Profile
     {
-        public Mapper()
+        public UserProfile()
         {
             CreateMap<User, UserInsertRequest>().ReverseMap();
             CreateMap<User, UserUpdateRequest>().ReverseMap();
