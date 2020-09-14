@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Cache;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Template.Contracts.Responses
+namespace Template.Contracts.V1.Responses
 {
     public class PagedResponse<T>
     {
-        public PagedResponse() {}
+        public PagedResponse() { }
         public PagedResponse(IEnumerable<T> response)
         {
             Data = response;

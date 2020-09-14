@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Template.Contracts.Requests
+namespace Template.Contracts.V1.Requests
 {
     public class UserInsertRequest
     {

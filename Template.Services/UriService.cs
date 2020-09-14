@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
-using Template.Contracts.Requests;
+using Template.Contracts.V1.Requests;
 using Template.Core.Interfaces;
 
 namespace Template.Services

@@ -3,7 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Template.Core.Interfaces;
 
-namespace Template.WebAPI.Controllers
+namespace Template.WebAPI.Controllers.V1
 {
     public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
     {
@@ -17,7 +17,7 @@ namespace Template.WebAPI.Controllers
         public async Task<ActionResult<T>> Insert(TInsert request)
         {
             var response = await _service.Insert(request);
-            if(response == null)
+            if (response == null)
             {
                 return BadRequest();
             }
@@ -27,10 +27,10 @@ namespace Template.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<T>> Update(string id, [FromBody]TUpdate request)
+        public async Task<ActionResult<T>> Update(string id, [FromBody] TUpdate request)
         {
             var response = await _service.Update(id, request);
-            if(response == null)
+            if (response == null)
             {
                 return NotFound();
             }
@@ -43,7 +43,7 @@ namespace Template.WebAPI.Controllers
         {
             var response = await _service.Delete(id);
 
-            if(response == false)
+            if (response == false)
             {
                 return NoContent();
             }

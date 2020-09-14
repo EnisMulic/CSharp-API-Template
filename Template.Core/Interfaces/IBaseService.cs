@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 
 namespace Template.Core.Interfaces
 {

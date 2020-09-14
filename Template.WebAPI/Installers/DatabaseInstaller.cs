@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 using Template.Core.Interfaces;
 using Template.Database;
 using Template.Domain;

@@ -1,23 +1,8 @@
-using System.Text;
-using AutoMapper;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
-using Template.Core.Interfaces;
-using Template.Core.Settings;
-using Template.Database;
-using Template.Domain;
-using Template.Services;
 using Template.WebAPI.Installers;
 
 namespace Template.WebAPI

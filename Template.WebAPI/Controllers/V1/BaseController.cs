@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 using Template.Core.Interfaces;
 
-namespace Template.WebAPI.Controllers
+namespace Template.WebAPI.Controllers.V1
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
+    [Route(ApiRoutes.Base + "/[controller]")]
     [ApiController]
     public class BaseController<T, TSearch> : ControllerBase
     {

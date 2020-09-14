@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 using Template.Domain;
 
 namespace Template.Core.Mappings

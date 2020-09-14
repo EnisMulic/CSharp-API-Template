@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 using Template.Core.Interfaces;
 
-namespace Template.WebAPI.Controllers
+namespace Template.WebAPI.Controllers.V1
 {
-    [Route("api/[controller]")]
+
     [ApiController]
     public class UserController : CRUDController<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>
     {
-        public UserController(ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest> service, IMapper mapper) 
+        public UserController(ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest> service, IMapper mapper)
             : base(service, mapper)
         {
         }

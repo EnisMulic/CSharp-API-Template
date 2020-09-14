@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Template.Contracts.Requests
+namespace Template.Contracts.V1.Requests
 {
-    public class UserUpdateRequest
+    public class UserSearchRequest
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
         public string UserName { get; set; }
         [EmailAddress]
         public string Email { get; set; }

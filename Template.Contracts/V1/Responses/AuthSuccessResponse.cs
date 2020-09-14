@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Template.Contracts.Responses
+﻿namespace Template.Contracts.V1.Responses
 {
     public class AuthSuccessResponse
     {

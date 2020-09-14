@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Template.Contracts.Requests;
+using Template.Contracts.V1.Requests;
 using Template.Domain;
 
 namespace Template.Core.Interfaces

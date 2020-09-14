@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Template.Contracts.Requests;
+using Template.Contracts.V1.Requests;
 using Template.Core.Interfaces;
 using Template.Core.Settings;
 using Template.Database;

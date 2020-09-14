@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Template.Contracts.Requests;
+using Template.Contracts.V1.Requests;
 
 namespace Template.Core.Interfaces
 {

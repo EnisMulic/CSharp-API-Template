@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Template.Contracts.Requests
+﻿namespace Template.Contracts.V1.Requests
 {
     public class UserAccountRegistrationRequest
     {

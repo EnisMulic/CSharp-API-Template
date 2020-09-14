@@ -7,8 +7,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Template.Contracts;
-using Template.Contracts.Requests;
-using Template.Contracts.Responses;
+using Template.Contracts.V1.Requests;
+using Template.Contracts.V1.Responses;
 using Template.Database;
 
 namespace Template.WebAPI.IntegrationTests

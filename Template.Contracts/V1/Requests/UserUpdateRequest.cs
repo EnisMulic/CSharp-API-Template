@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Template.Contracts.Responses
+namespace Template.Contracts.V1.Requests
 {
-    public class UserResponse
+    public class UserUpdateRequest
     {
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
+        [Phone]
         public string PhoneNumber { get; set; }
     }
 }
