@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  template-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=QWElkj132!
+      - MSSQL_PID=Developer
+    ports:
+      - 1433:1433
+    networks:
+      - templateappnet
+
+    
+  template-api:
+    restart: unless-stopped
+    build: 
+      context: .
+    environment:
+      - ConnectionStrings:TemplateAPI=Server=template-sql,1433;Database=TemplateApi;User=sa;Password=QWElkj132!;ConnectRetryCount=0
+    ports:
+      - 44356:80
+    networks:
+      - templateappnet     
+    links:
+      - template-sql
+    depends_on:
+      - template-sql
+      
+networks:
+  templateappnet:
+    driver: bridge
