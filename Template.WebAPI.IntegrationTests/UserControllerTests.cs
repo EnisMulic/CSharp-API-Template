@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Template.Contracts;
+using Template.Contracts.V1;
 using Template.Contracts.V1.Responses;
 using Template.Domain;
 using Xunit;

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Template.Contracts;
+using Template.Contracts.V1;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
 using Template.Database;
