@@ -22,7 +22,7 @@ namespace Template.WebAPI.Installers
 
 
             // Auth
-            services.AddScoped<IUserAccountService, UserAccountService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             // User
             services.AddScoped<ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();

@@ -4,7 +4,7 @@ using Template.Domain;
 
 namespace Template.Core.Interfaces
 {
-    public interface IUserAccountService
+    public interface IAuthService
     {
         Task<AuthenticationResult> RegisterAsync(UserAccountRegistrationRequest request);
 

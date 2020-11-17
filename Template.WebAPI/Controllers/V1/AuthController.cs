@@ -11,15 +11,15 @@ namespace Template.WebAPI.Controllers.V1
 {
     [AllowAnonymous]
     [ApiController]
-    public class UserAccountController : ControllerBase
+    public class AuthController : ControllerBase
     {
-        private readonly IUserAccountService _userAccountService;
-        public UserAccountController(IUserAccountService userAccountService)
+        private readonly IAuthService _userAccountService;
+        public AuthController(IAuthService userAccountService)
         {
             _userAccountService = userAccountService;
         }
 
-        [HttpPost(ApiRoutes.UserAccount.Register)]
+        [HttpPost(ApiRoutes.Auth.Register)]
         public async Task<IActionResult> Register([FromBody] UserAccountRegistrationRequest request)
         {
             if (!ModelState.IsValid)
@@ -53,7 +53,7 @@ namespace Template.WebAPI.Controllers.V1
             );
         }
 
-        [HttpPost(ApiRoutes.UserAccount.Authenticate)]
+        [HttpPost(ApiRoutes.Auth.Authenticate)]
         public async Task<IActionResult> Authenticate([FromBody] UserAccountAuthenticationRequest request)
         {
             var authResponse = await _userAccountService.AuthenticateAsync(request);
@@ -79,7 +79,7 @@ namespace Template.WebAPI.Controllers.V1
             );
         }
 
-        [HttpPost(ApiRoutes.UserAccount.Refresh)]
+        [HttpPost(ApiRoutes.Auth.Refresh)]
         public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
         {
             var authResponse = await _userAccountService.RefreshTokenAsync(request);

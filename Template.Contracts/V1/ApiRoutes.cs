@@ -11,13 +11,13 @@ namespace Template.Contracts.V1
 
         public const string Base = Root + "/" + Version;
 
-        public static class UserAccount
+        public static class Auth
         {
-            public const string Register = Base + "/UserAccount/Register";
+            public const string Register = Base + "/Auth/Register";
 
-            public const string Authenticate = Base + "/UserAccount/Auth";
+            public const string Authenticate = Base + "/Auth/Auth";
 
-            public const string Refresh = Base + "/UserAccount/Refresh";
+            public const string Refresh = Base + "/Auth/Refresh";
         }
 
         public static class User

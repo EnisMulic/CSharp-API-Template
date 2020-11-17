@@ -54,7 +54,7 @@ namespace Template.WebAPI.IntegrationTests
 
         private async Task<string> GetJwtAsync()
         {
-            var response = await _httpClient.PostAsJsonAsync(ApiRoutes.UserAccount.Register, new UserAccountRegistrationRequest
+            var response = await _httpClient.PostAsJsonAsync(ApiRoutes.Auth.Register, new UserAccountRegistrationRequest
             {
                 Username = "Integrator",
                 Email = "test2@integration.com",

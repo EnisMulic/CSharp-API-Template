@@ -17,7 +17,7 @@ using Template.Domain;
 
 namespace Template.Services
 {
-    public class UserAccountService : IUserAccountService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<Role> _roleManager;
@@ -25,7 +25,7 @@ namespace Template.Services
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly TemplateContext _context;
 
-        public UserAccountService
+        public AuthService
         (
             UserManager<User> userManager, 
             RoleManager<Role> roleManager, 
