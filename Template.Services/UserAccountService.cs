@@ -20,7 +20,7 @@ namespace Template.Services
     public class UserAccountService : IUserAccountService
     {
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly TemplateContext _context;
@@ -28,7 +28,7 @@ namespace Template.Services
         public UserAccountService
         (
             UserManager<User> userManager, 
-            RoleManager<IdentityRole> roleManager, 
+            RoleManager<Role> roleManager, 
             JwtSettings jwtSettings, 
             TokenValidationParameters tokenValidationParameters, 
             TemplateContext context
@@ -164,10 +164,8 @@ namespace Template.Services
                 };
             }
 
-            var newUserId = Guid.NewGuid();
             var newUser = new User
             {
-                Id = newUserId.ToString(),
                 Email = request.Email,
                 UserName = request.Username
             };
@@ -195,7 +193,7 @@ namespace Template.Services
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim("id", user.Id)
+                new Claim("id", user.Id.ToString())
             };
 
             var userClaims = await _userManager.GetClaimsAsync(user);

@@ -55,10 +55,6 @@ namespace Template.Services
 
         private IQueryable<User> ApplyFilterToQuery(IQueryable<User> query, UserSearchRequest filter)
         {
-            if(!string.IsNullOrEmpty(filter?.Id))
-            {
-                query = query.Where(i => i.Id == filter.Id);
-            }
 
             if(!string.IsNullOrEmpty(filter?.UserName))
             {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Contracts.V1.Requests;
@@ -18,8 +17,7 @@ namespace Template.WebAPI.Installers
             services.AddDbContext<TemplateContext>(options =>
                 options.UseSqlServer(
                     configuration.GetConnectionString("TemplateAPI")));
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<TemplateContext>();
 
 
