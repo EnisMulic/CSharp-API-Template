@@ -6,8 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.Core.Helpers;
-using Template.Core.Interfaces;
+using Template.WebAPI.Helpers;
+using Template.WebAPI.Interfaces;
 using Template.Database;
 
 namespace Template.Services

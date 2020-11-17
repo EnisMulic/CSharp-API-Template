@@ -1,7 +1,7 @@
 ﻿using System;
 using Template.Contracts.V1.Requests;
 
-namespace Template.Core.Interfaces
+namespace Template.WebAPI.Interfaces
 {
     public interface IUriService
     {

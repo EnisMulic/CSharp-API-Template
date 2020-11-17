@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
-using Template.Core.Interfaces;
+using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Services;
 

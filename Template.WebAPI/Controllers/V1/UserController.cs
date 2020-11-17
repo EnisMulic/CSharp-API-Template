@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.Core.Interfaces;
+using Template.WebAPI.Interfaces;
 
 namespace Template.WebAPI.Controllers.V1
 {

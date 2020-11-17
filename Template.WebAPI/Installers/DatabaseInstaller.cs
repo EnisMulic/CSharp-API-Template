@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.Core.Interfaces;
+using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Domain;
 using Template.Services;

@@ -4,8 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Template.Core.Interfaces;
-using Template.Core.Settings;
+using Template.WebAPI.Interfaces;
+using Template.WebAPI.Settings;
 using Template.Services;
 
 namespace Template.WebAPI.Installers

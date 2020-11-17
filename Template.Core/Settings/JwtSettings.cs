@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Template.Core.Settings
+namespace Template.WebAPI.Settings
 {
     public class JwtSettings
     {

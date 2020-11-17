@@ -8,7 +8,7 @@ namespace Template.WebAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddAutoMapper(typeof(Core.Mappings.UserProfile));
+            services.AddAutoMapper(typeof(Mappings.UserProfile));
         }
     }
 }

@@ -3,7 +3,7 @@ using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
 using Template.Domain;
 
-namespace Template.Core.Mappings
+namespace Template.WebAPI.Mappings
 {
     public class UserProfile : Profile
     {
