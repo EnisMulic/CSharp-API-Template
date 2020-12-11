@@ -9,6 +9,7 @@ using Template.Contracts.V1.Responses;
 using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Domain;
+using Template.WebAPI.Helpers;
 
 namespace Template.Services
 {
@@ -17,6 +18,7 @@ namespace Template.Services
         private readonly TemplateContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
+        private readonly IUriService _uriService;
 
         public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper, IUriService uriService) 
             : base(context, mapper, uriService)
@@ -24,6 +26,7 @@ namespace Template.Services
             _context = context;
             _mapper = mapper;
             _userManager = userManager;
+            _uriService = uriService;
         }
 
         public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationQuery pagination)
@@ -37,9 +40,13 @@ namespace Template.Services
             query = query.Skip(skip).Take(pagination.PageSize);
 
 
+            int count = await query.CountAsync();
+
             var list = await query.ToListAsync();
-            var pagedList = await base.GetPagedResponse(_mapper.Map<List<UserResponse>>(list), pagination);
-            return pagedList;
+            var response = _mapper.Map<List<UserResponse>>(list);
+
+            var pagedResponse = PaginationHelper.CreatePaginatedResponse(_uriService, pagination, response, count);
+            return pagedResponse;
         }
 
         public async override Task<UserResponse> Insert(UserInsertRequest request)

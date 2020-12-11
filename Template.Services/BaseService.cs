@@ -41,8 +41,12 @@ namespace Template.Services
             var skip = (pagination.PageNumber - 1) * pagination.PageSize;
             query = query.Skip(skip).Take(pagination.PageSize);
 
+            int count = await query.CountAsync();
+
             var list = await query.ToListAsync();
-            var pagedResponse = await GetPagedResponse(_mapper.Map<List<TModel>>(list), pagination);
+            var response = _mapper.Map<List<TModel>>(list);
+
+            var pagedResponse = PaginationHelper.CreatePaginatedResponse(_uriService, pagination, response, count);
             return pagedResponse;
         }
 
@@ -51,16 +55,5 @@ namespace Template.Services
             var entity = await _context.Set<TDatabase>().FindAsync(id);
             return _mapper.Map<TModel>(entity);
         }
-
-        protected async Task<PagedResponse<TModel>> GetPagedResponse(List<TModel> list, PaginationQuery pagination)
-        {
-            int count = await _context.Set<TDatabase>()
-                .AsNoTracking()
-                .CountAsync();
-
-            return PaginationHelper.CreatePaginatedResponse(_uriService, pagination, list, count);
-        }
-            
-        
     }
 }
