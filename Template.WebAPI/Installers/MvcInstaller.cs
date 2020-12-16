@@ -7,6 +7,10 @@ using System.Text;
 using Template.WebAPI.Interfaces;
 using Template.WebAPI.Settings;
 using Template.Services;
+using Microsoft.AspNetCore.Authorization;
+using Template.Authorization.Constants;
+using Template.Authorization.Requirements;
+using Template.Authorization.Handlers;
 
 namespace Template.WebAPI.Installers
 {
@@ -14,8 +18,8 @@ namespace Template.WebAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
-
+            
+            services.AddMvcCore().AddApiExplorer();
             services.AddCors();
 
             var jwtSettings = new JwtSettings();
@@ -43,6 +47,16 @@ namespace Template.WebAPI.Installers
             {
                 options.TokenValidationParameters = tokenValidationParameters;
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(Policies.TemplatePolicy, policy =>
+                {
+                    policy.AddRequirements(new TemplateRequirement("template.com"));
+                });
+            });
+
+            services.AddSingleton<IAuthorizationHandler, TemplateHandler>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IUriService>(provider =>

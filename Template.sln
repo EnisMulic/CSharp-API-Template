@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI", "Template.WebAPI\Template.WebAPI.csproj", "{D7D8700F-089A-4E6A-81BF-F06A08F5FC46}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Contracts", "Template.Contracts\Template.Contracts.csproj", "{5FC60ABE-CFEB-4B27-8910-C71907D3F748}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI.IntegrationTests", "Template.WebAPI.IntegrationTests\Template.WebAPI.IntegrationTests.csproj", "{60D50F40-40FA-4CB9-91BB-993553308D05}"
@@ -13,9 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Domain", "Template
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Database", "Template.Database\Template.Database.csproj", "{E8F378BC-BA1A-4C05-B139-53D6C1E3D39A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Core", "Template.Core\Template.Core.csproj", "{87249661-5B98-497F-AE64-843356939084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Core", "Template.Core\Template.Core.csproj", "{87249661-5B98-497F-AE64-843356939084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Services", "Template.Services\Template.Services.csproj", "{8AE5DAC8-C151-4118-8328-8A026D556EF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Services", "Template.Services\Template.Services.csproj", "{8AE5DAC8-C151-4118-8328-8A026D556EF0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI", "Template.WebAPI\Template.WebAPI.csproj", "{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Authorization", "Template.Authorization\Template.Authorization.csproj", "{C7BA6456-48AF-45F0-B8B2-F010A194E178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D7D8700F-089A-4E6A-81BF-F06A08F5FC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7D8700F-089A-4E6A-81BF-F06A08F5FC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7D8700F-089A-4E6A-81BF-F06A08F5FC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7D8700F-089A-4E6A-81BF-F06A08F5FC46}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FC60ABE-CFEB-4B27-8910-C71907D3F748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FC60ABE-CFEB-4B27-8910-C71907D3F748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FC60ABE-CFEB-4B27-8910-C71907D3F748}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +49,14 @@ Global
 		{8AE5DAC8-C151-4118-8328-8A026D556EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE5DAC8-C151-4118-8328-8A026D556EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE5DAC8-C151-4118-8328-8A026D556EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

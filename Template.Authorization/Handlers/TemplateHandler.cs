@@ -18,7 +18,6 @@ namespace Template.Authorization.Handlers
 
             context.Fail();
             return Task.CompletedTask;
-
         }
     }
 }

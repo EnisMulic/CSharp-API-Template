@@ -2,6 +2,6 @@
 {
     public static class Policies
     {
-        public const string IsTemplatePolicy = "TemplateRequirement";
+        public static string TemplatePolicy = "TemplateRequirement";
     }
 }
