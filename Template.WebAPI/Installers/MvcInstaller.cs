@@ -16,6 +16,8 @@ namespace Template.WebAPI.Installers
 {
     public class MvcInstaller : IInstaller
     {
+        public string IsTemplatePolicy { get; private set; }
+
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             

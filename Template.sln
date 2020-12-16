@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Services", "Templa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI", "Template.WebAPI\Template.WebAPI.csproj", "{DDDFE855-4619-4E7A-B4E8-4FCEE8D351F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Authorization", "Template.Authorization\Template.Authorization.csproj", "{C7BA6456-48AF-45F0-B8B2-F010A194E178}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Authorization", "Template.Authorization\Template.Authorization.csproj", "{C7BA6456-48AF-45F0-B8B2-F010A194E178}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
