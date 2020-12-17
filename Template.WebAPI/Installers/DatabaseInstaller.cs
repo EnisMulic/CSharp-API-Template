@@ -25,7 +25,12 @@ namespace Template.WebAPI.Installers
             services.AddScoped<IAuthService, AuthService>();
 
             // User
-            services.AddScoped<ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, UserService>();
+            services.AddScoped<
+                ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, 
+                UserService>();
+
+            // Role
+            services.AddScoped<IBaseService<RoleResponse, RoleSearchRequest>, RoleService>();
         }
     }
 }
