@@ -28,7 +28,7 @@ namespace Template.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task<TModel> Update(string id, TUpdate request)
+        public virtual async Task<TModel> Update(int id, TUpdate request)
         {
             var entity = _context.Set<TDatabase>().Find(id);
             _context.Set<TDatabase>().Attach(entity);
@@ -41,7 +41,7 @@ namespace Template.Services
             return _mapper.Map<TModel>(entity);
         }
 
-        public virtual async Task<bool> Delete(string id)
+        public virtual async Task<bool> Delete(int id)
         {
             var entity = await _context.Set<TDatabase>().FindAsync(id);
 

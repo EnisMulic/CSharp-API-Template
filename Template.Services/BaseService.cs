@@ -50,7 +50,7 @@ namespace Template.Services
             return pagedResponse;
         }
 
-        public virtual async Task<TModel> GetById(string id)
+        public virtual async Task<TModel> GetById(int id)
         {
             var entity = await _context.Set<TDatabase>().FindAsync(id);
             return _mapper.Map<TModel>(entity);

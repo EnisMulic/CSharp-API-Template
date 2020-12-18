@@ -31,7 +31,9 @@ namespace Template.Services
 
         public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationQuery pagination)
         {
-            var query = _context.Set<User>().AsQueryable();
+            var query = _context.Set<User>()
+                .Include(i => i.Roles)
+                .AsQueryable();
 
             query = ApplyFilterToQuery(query, search);
 
@@ -46,6 +48,14 @@ namespace Template.Services
 
             var pagedResponse = PaginationHelper.CreatePaginatedResponse(_uriService, pagination, response, count);
             return pagedResponse;
+        }
+
+        public override async Task<UserResponse> GetById(int id)
+        {
+            var entity = await _context.Set<User>()
+                .Include(i => i.Roles)
+                .SingleOrDefaultAsync(i => i.Id == id);
+            return _mapper.Map<UserResponse>(entity);
         }
 
         public async override Task<UserResponse> Insert(UserInsertRequest request)
@@ -75,6 +85,11 @@ namespace Template.Services
             if (!string.IsNullOrEmpty(filter?.PhoneNumber))
             {
                 query = query.Where(i => i.PhoneNumber == filter.PhoneNumber);
+            }
+
+            if(filter.Roles?.Count() > 0)
+            {
+                query = query.Where(i => i.Roles.Any(j => filter.Roles.Contains(j.RoleId)));
             }
 
             return query;

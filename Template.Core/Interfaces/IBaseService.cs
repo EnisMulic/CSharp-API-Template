@@ -7,6 +7,6 @@ namespace Template.WebAPI.Interfaces
     public interface IBaseService<T, TSearch>
     {
         Task<PagedResponse<T>> Get(TSearch search, PaginationQuery pagination);
-        Task<T> GetById(string id);
+        Task<T> GetById(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Template.Contracts.V1.Requests
 {
@@ -12,5 +13,6 @@ namespace Template.Contracts.V1.Requests
         public string Email { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
+        public IList<int> Roles { get; set; }
     }
 }

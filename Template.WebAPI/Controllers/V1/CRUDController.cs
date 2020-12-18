@@ -27,7 +27,7 @@ namespace Template.WebAPI.Controllers.V1
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<T>> Update(string id, [FromBody] TUpdate request)
+        public async Task<ActionResult<T>> Update(int id, [FromBody] TUpdate request)
         {
             var response = await _service.Update(id, request);
             if (response == null)
@@ -39,7 +39,7 @@ namespace Template.WebAPI.Controllers.V1
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> Delete(string id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
             var response = await _service.Delete(id);
 

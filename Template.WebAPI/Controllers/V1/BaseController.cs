@@ -37,7 +37,7 @@ namespace Template.WebAPI.Controllers.V1
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<T>> GetById(string id)
+        public async Task<ActionResult<T>> GetById(int id)
         {
             var response = await _service.GetById(id);
 
