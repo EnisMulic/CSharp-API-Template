@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 
 namespace Template.Contracts.V1.Responses
 {
@@ -10,5 +10,6 @@ namespace Template.Contracts.V1.Responses
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public IList<RoleResponse> Roles { get; set; }
     }
 }
