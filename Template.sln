@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.WebAPI", "Template
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Authorization", "Template.Authorization\Template.Authorization.csproj", "{C7BA6456-48AF-45F0-B8B2-F010A194E178}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Sdk", "Template.Sdk\Template.Sdk.csproj", "{A861F2E3-40CF-4324-9EBE-C53360A29AC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7BA6456-48AF-45F0-B8B2-F010A194E178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A861F2E3-40CF-4324-9EBE-C53360A29AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A861F2E3-40CF-4324-9EBE-C53360A29AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A861F2E3-40CF-4324-9EBE-C53360A29AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A861F2E3-40CF-4324-9EBE-C53360A29AC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
