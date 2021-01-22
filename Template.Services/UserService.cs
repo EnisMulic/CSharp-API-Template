@@ -10,6 +10,7 @@ using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Domain;
 using Template.WebAPI.Helpers;
+using System.Linq.Expressions;
 
 namespace Template.Services
 {
@@ -36,7 +37,7 @@ namespace Template.Services
                 .AsQueryable();
 
             query = ApplyFilterToQuery(query, search);
-
+            query = ApplySort(query, search);
 
             var skip = (pagination.PageNumber - 1) * pagination.PageSize;
             query = query.Skip(skip).Take(pagination.PageSize);
@@ -67,6 +68,21 @@ namespace Template.Services
             await _context.SaveChangesAsync();
 
             return _mapper.Map<UserResponse>(user);
+        }
+
+        protected override Expression<System.Func<User, object>> GetSortExpression(UserSearchRequest sortRequest)
+        {
+            switch(sortRequest.OrderBy)
+            {
+                case "FirstName": 
+                    return x => x.FirstName;
+                case "LastName":
+                    return x => x.LastName;
+                case "Email":
+                    return x => x.Email;
+                default:
+                    return x => x.Id;
+            }
         }
 
         private IQueryable<User> ApplyFilterToQuery(IQueryable<User> query, UserSearchRequest filter)

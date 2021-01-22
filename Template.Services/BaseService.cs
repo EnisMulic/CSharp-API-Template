@@ -9,6 +9,9 @@ using Template.Contracts.V1.Responses;
 using Template.WebAPI.Helpers;
 using Template.WebAPI.Interfaces;
 using Template.Database;
+using System.Linq.Expressions;
+using System;
+using Template.Domain;
 
 namespace Template.Services
 {
@@ -38,6 +41,8 @@ namespace Template.Services
                 .AsNoTracking()
                 .AsQueryable();
 
+            query = ApplySort(query, search);
+
             var skip = (pagination.PageNumber - 1) * pagination.PageSize;
             query = query.Skip(skip).Take(pagination.PageSize);
 
@@ -49,6 +54,23 @@ namespace Template.Services
             var pagedResponse = PaginationHelper.CreatePaginatedResponse(_uriService, pagination, response, count);
             return pagedResponse;
         }
+
+        protected IQueryable<TDatabase> ApplySort(IQueryable<TDatabase> query, TSearch search)
+        {
+            var sort = GetSortExpression(search);
+            if(sort != null)
+            {
+                return query.OrderBy(sort);
+            }
+
+            return query;
+        }
+
+        protected virtual Expression<Func<TDatabase, object>> GetSortExpression(TSearch sortRequest)
+        {
+            return null;
+        }
+        
 
         public virtual async Task<TModel> GetById(int id)
         {

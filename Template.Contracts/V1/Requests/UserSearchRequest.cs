@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Template.Contracts.V1.Requests
 {
-    public class UserSearchRequest
+    public class UserSearchRequest : SortQuery
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
