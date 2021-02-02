@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces;
 
 namespace Template.WebAPI.Controllers.V1
 {

@@ -12,7 +12,7 @@ using Template.Contracts.V1.Requests;
 using Template.WebAPI.Settings;
 using Template.Database;
 using Template.Domain;
-using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces;
 
 namespace Template.Services
 {

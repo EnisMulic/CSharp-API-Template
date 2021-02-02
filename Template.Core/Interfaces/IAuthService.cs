@@ -2,7 +2,7 @@
 using Template.Contracts.V1.Requests;
 using Template.Domain;
 
-namespace Template.Core.Interfaces.Services
+namespace Template.Core.Interfaces
 {
     public interface IAuthService
     {

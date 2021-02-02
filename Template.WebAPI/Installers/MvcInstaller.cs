@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Template.Authorization.Constants;
 using Template.Authorization.Requirements;
 using Template.Authorization.Handlers;
-using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces;
 
 namespace Template.WebAPI.Installers
 {
