@@ -54,6 +54,8 @@ namespace Template.Services
             return pagedResponse;
         }
 
+
+
         protected IQueryable<TDatabase> ApplySort(IQueryable<TDatabase> query, TSearch search)
         {
             var sort = GetSortExpression(search);
@@ -71,10 +73,6 @@ namespace Template.Services
         }
         
 
-        public virtual async Task<TModel> GetById(int id)
-        {
-            var entity = await _repository.GetByIdAsync(id);
-            return _mapper.Map<TModel>(entity);
-        }
+        
     }
 }
