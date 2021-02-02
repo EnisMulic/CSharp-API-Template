@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Template.Contracts.V1.Requests;
-using Template.Contracts.V1.Responses;
-using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Domain;
-using Template.Services;
+using Template.Core.Interfaces.Repository;
+using Template.Database.Repository;
 
 namespace Template.WebAPI.Installers
 {
@@ -21,16 +19,13 @@ namespace Template.WebAPI.Installers
                 .AddEntityFrameworkStores<TemplateContext>();
 
 
-            // Auth
-            services.AddScoped<IAuthService, AuthService>();
+            // UnitOfWork
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            // User
-            services.AddScoped<
-                ICRUDService<UserResponse, UserSearchRequest, UserInsertRequest, UserUpdateRequest>, 
-                UserService>();
+            // Repository
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
-            // Role
-            services.AddScoped<IBaseService<RoleResponse, RoleSearchRequest>, RoleService>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

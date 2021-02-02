@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Template.WebAPI.Interfaces
+namespace Template.Core.Interfaces.Services
 {
     public interface ICRUDService<T, TSearch, TInsert, TUpdate> : IBaseService<T, TSearch>
     {

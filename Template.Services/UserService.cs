@@ -6,25 +6,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.WebAPI.Interfaces;
-using Template.Database;
 using Template.Domain;
 using Template.WebAPI.Helpers;
 using System.Linq.Expressions;
+using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces.Repository;
 
 namespace Template.Services
 {
     public class UserService : CRUDService<UserResponse, UserSearchRequest, User, UserInsertRequest, UserUpdateRequest>
     {
-        private readonly TemplateContext _context;
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly IUriService _uriService;
 
-        public UserService(TemplateContext context, UserManager<User> userManager, IMapper mapper, IUriService uriService) 
-            : base(context, mapper, uriService)
+        public UserService(IUnitOfWork unitOfWork, UserManager<User> userManager, IMapper mapper, IUriService uriService) 
+            : base(unitOfWork, mapper, uriService)
         {
-            _context = context;
             _mapper = mapper;
             _userManager = userManager;
             _uriService = uriService;
@@ -32,9 +30,9 @@ namespace Template.Services
 
         public async override Task<PagedResponse<UserResponse>> Get(UserSearchRequest search, PaginationQuery pagination)
         {
-            var query = _context.Set<User>()
-                .Include(i => i.Roles)
-                .AsQueryable();
+            var query = (await _repository.GetAllAsync()).AsQueryable()
+                .Include(i => i.Roles).AsQueryable();
+                
 
             query = ApplyFilterToQuery(query, search);
             query = ApplySort(query, search);
@@ -53,9 +51,7 @@ namespace Template.Services
 
         public override async Task<UserResponse> GetById(int id)
         {
-            var entity = await _context.Set<User>()
-                .Include(i => i.Roles)
-                .SingleOrDefaultAsync(i => i.Id == id);
+            var entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<UserResponse>(entity);
         }
 
@@ -65,7 +61,7 @@ namespace Template.Services
             await _userManager.CreateAsync(user, request.Password);
 
             //await _context.AddAsync(user);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.SaveAsync();
 
             return _mapper.Map<UserResponse>(user);
         }

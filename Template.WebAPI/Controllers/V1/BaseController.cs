@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Template.Contracts.V1;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.WebAPI.Interfaces;
+using Template.Core.Interfaces.Services;
 
 namespace Template.WebAPI.Controllers.V1
 {

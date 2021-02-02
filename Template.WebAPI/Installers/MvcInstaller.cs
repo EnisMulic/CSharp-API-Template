@@ -4,13 +4,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Template.WebAPI.Interfaces;
 using Template.WebAPI.Settings;
 using Template.Services;
 using Microsoft.AspNetCore.Authorization;
 using Template.Authorization.Constants;
 using Template.Authorization.Requirements;
 using Template.Authorization.Handlers;
+using Template.Core.Interfaces.Services;
 
 namespace Template.WebAPI.Installers
 {

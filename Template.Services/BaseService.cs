@@ -7,39 +7,38 @@ using System.Threading.Tasks;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
 using Template.WebAPI.Helpers;
-using Template.WebAPI.Interfaces;
-using Template.Database;
 using System.Linq.Expressions;
 using System;
-using Template.Domain;
+using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces.Repository;
 
 namespace Template.Services
 {
     [Authorize]
     public class BaseService<TModel, TSearch, TDatabase> : IBaseService<TModel, TSearch> where TDatabase: class
     {
-        private readonly TemplateContext _context;
         private readonly IMapper _mapper;
         private readonly IUriService _uriService;
-
-        public BaseService(TemplateContext context, IMapper mapper)
+        protected readonly IUnitOfWork _unitOfWork;
+        protected readonly IRepository<TDatabase> _repository;
+        public BaseService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _context = context;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _repository = _unitOfWork.Repository<TDatabase>();
         }
 
-        public BaseService(TemplateContext context, IMapper mapper, IUriService uriService)
+        public BaseService(IUnitOfWork unitOfWork, IMapper mapper, IUriService uriService)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
+            _repository = _unitOfWork.Repository<TDatabase>();
             _mapper = mapper;
             _uriService = uriService;
         }
 
         public virtual async Task<PagedResponse<TModel>> Get(TSearch search, PaginationQuery pagination)
         {
-            var query = _context.Set<TDatabase>()
-                .AsNoTracking()
-                .AsQueryable();
+            var query = (await _repository.GetAllAsync()).AsQueryable();
 
             query = ApplySort(query, search);
 
@@ -74,7 +73,7 @@ namespace Template.Services
 
         public virtual async Task<TModel> GetById(int id)
         {
-            var entity = await _context.Set<TDatabase>().FindAsync(id);
+            var entity = await _repository.GetByIdAsync(id);
             return _mapper.Map<TModel>(entity);
         }
     }

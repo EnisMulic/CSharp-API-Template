@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Template.Contracts.V1.Requests;
-using Template.WebAPI.Interfaces;
+using Template.Core.Interfaces.Services;
 
 namespace Template.Services
 {

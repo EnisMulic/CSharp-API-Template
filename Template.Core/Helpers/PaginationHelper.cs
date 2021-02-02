@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
-using Template.WebAPI.Interfaces;
+using Template.Core.Interfaces.Services;
 
 namespace Template.WebAPI.Helpers
 {

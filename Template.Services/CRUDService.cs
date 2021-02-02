@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
-using Template.WebAPI.Interfaces;
 using Template.Database;
 using Template.Services;
+using Template.Core.Interfaces.Services;
+using Template.Core.Interfaces.Repository;
 
 namespace Template.Services
 {
@@ -11,48 +12,45 @@ namespace Template.Services
         BaseService<TModel, TSearch, TDatabase>, ICRUDService<TModel, TSearch, TInsert, TUpdate>
         where TDatabase : class
     {
-        private readonly TemplateContext _context;
         private readonly IMapper _mapper;
-        public CRUDService(TemplateContext context, IMapper mapper, IUriService uriService) : base(context, mapper, uriService)
+        public CRUDService(IUnitOfWork unitOfWork, IMapper mapper, IUriService uriService) : base(unitOfWork, mapper, uriService)
         {
-            _context = context;
             _mapper = mapper;
         }
         public virtual async Task<TModel> Insert(TInsert request)
         {
             var entity = _mapper.Map<TDatabase>(request);
 
-            _context.Set<TDatabase>().Add(entity);
-            await _context.SaveChangesAsync();
+            await _repository.AddAsync(entity);
+            await _unitOfWork.SaveAsync();
 
             return _mapper.Map<TModel>(entity);
         }
 
         public virtual async Task<TModel> Update(int id, TUpdate request)
         {
-            var entity = _context.Set<TDatabase>().Find(id);
-            _context.Set<TDatabase>().Attach(entity);
-            _context.Set<TDatabase>().Update(entity);
-
+            var entity = await _repository.GetByIdAsync(id);
+            
             _mapper.Map(request, entity);
 
-            await _context.SaveChangesAsync();
+            _repository.Update(entity);
+            await _unitOfWork.SaveAsync();
 
             return _mapper.Map<TModel>(entity);
         }
 
         public virtual async Task<bool> Delete(int id)
         {
-            var entity = await _context.Set<TDatabase>().FindAsync(id);
+            var entity = await _repository.GetByIdAsync(id);
 
             try
             {
-                _context.Set<TDatabase>().Remove(entity);
-                await _context.SaveChangesAsync();
+                _repository.Remove(entity);
+                await _unitOfWork.SaveAsync();
 
                 return true;
             }
-            catch(Exception ex)
+            catch
             {
                 return false;
             }
