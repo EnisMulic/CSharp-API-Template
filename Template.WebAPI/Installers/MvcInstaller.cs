@@ -11,6 +11,7 @@ using Template.Authorization.Constants;
 using Template.Authorization.Requirements;
 using Template.Authorization.Handlers;
 using Template.Core.Interfaces;
+using Newtonsoft.Json.Converters;
 
 namespace Template.WebAPI.Installers
 {
@@ -20,8 +21,11 @@ namespace Template.WebAPI.Installers
 
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            
-            services.AddMvcCore().AddApiExplorer();
+      
+            services.AddMvcCore().AddApiExplorer().AddNewtonsoftJson(options =>
+                options.SerializerSettings.Converters.Add(new StringEnumConverter()));
+            services.AddSwaggerGenNewtonsoftSupport();
+
             services.AddCors();
 
             var jwtSettings = new JwtSettings();
