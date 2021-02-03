@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
@@ -29,14 +30,15 @@ namespace Template.Services
                 .Include(i => i.Roles).AsQueryable();
                 
 
-            query = ApplyFilterToQuery(query, search);
+            query = ApplyFilter(query, search);
+            query = ApplySorting(query, search);
 
+            int count = await query.CountAsync();
 
             var skip = (pagination.PageNumber - 1) * pagination.PageSize;
             query = query.Skip(skip).Take(pagination.PageSize);
 
-            int count = await query.CountAsync();
-
+            
             var list = await query.ToListAsync();
             var response = _mapper.Map<List<UserResponse>>(list);
 
@@ -63,7 +65,7 @@ namespace Template.Services
             return _mapper.Map<UserResponse>(user);
         }
 
-        private IQueryable<User> ApplyFilterToQuery(IQueryable<User> query, UserSearchRequest filter)
+        protected override IQueryable<User> ApplyFilter(IQueryable<User> query, UserSearchRequest filter)
         {
 
             if(!string.IsNullOrEmpty(filter?.UserName))
@@ -87,6 +89,23 @@ namespace Template.Services
             }
 
             return query;
+        }
+
+        protected override Expression<System.Func<User, object>> GetSortExpression(UserSearchRequest search)
+        {
+            switch (search.OrderBy)
+            {
+                case nameof(User.FirstName):
+                    return i => i.FirstName;
+                case nameof(User.LastName):
+                    return i => i.LastName;
+                case nameof(User.Email):
+                    return i => i.Email;
+                case nameof(User.UserName):
+                    return i => i.UserName;
+                default:
+                    return i => i.Id;
+            }
         }
     }
 }

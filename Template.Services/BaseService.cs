@@ -9,11 +9,15 @@ using Template.Contracts.V1.Responses;
 using Template.WebAPI.Helpers;
 using Template.Database;
 using Template.Core.Interfaces;
+using System.Linq.Expressions;
+using System;
 
 namespace Template.Services
 {
     [Authorize]
-    public class BaseService<TModel, TSearch, TDatabase> : IBaseService<TModel, TSearch> where TDatabase: class
+    public class BaseService<TModel, TSearch, TDatabase> : IBaseService<TModel, TSearch>
+        where TDatabase : class
+        where TSearch : SortQuery
     {
         protected readonly TemplateContext _context;
         protected readonly IMapper _mapper;
@@ -35,10 +39,14 @@ namespace Template.Services
         {
             var query = _context.Set<TDatabase>().AsQueryable();
 
+            query = ApplyFilter(query, search);
+            query = ApplySorting(query, search);
+
+            int count = await query.CountAsync();
+
             var skip = (pagination.PageNumber - 1) * pagination.PageSize;
             query = query.Skip(skip).Take(pagination.PageSize);
 
-            int count = await query.CountAsync();
 
             var list = await query.ToListAsync();
             var response = _mapper.Map<List<TModel>>(list);
@@ -51,6 +59,35 @@ namespace Template.Services
         {
             var entity = await _context.Set<TDatabase>().FindAsync(id);
             return _mapper.Map<TModel>(entity);
+        }
+
+        protected virtual IQueryable<TDatabase> ApplyFilter(IQueryable<TDatabase> query, TSearch search)
+        {
+            return query;
+        }
+
+        protected virtual IQueryable<TDatabase> ApplySorting(IQueryable<TDatabase> query, TSearch search)
+        {
+            var expression = GetSortExpression(search);
+
+            if (expression != null)
+            {
+                if (search.SortOrder == SortOrder.ASC)
+                {
+                    query = query.OrderBy(expression);
+                }
+                else
+                {
+                    query = query.OrderByDescending(expression);
+                }
+            }
+
+            return query;
+        }
+
+        protected virtual Expression<Func<TDatabase, object>> GetSortExpression(TSearch search)
+        {
+            return null;
         }
     }
 }

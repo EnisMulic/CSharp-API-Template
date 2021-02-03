@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using System.Threading.Tasks;
-
+using Template.Contracts.V1.Requests;
 using Template.Core.Interfaces;
 using Template.Database;
 
@@ -9,6 +9,7 @@ namespace Template.Services
     public class CRUDService<TModel, TSearch, TDatabase, TInsert, TUpdate> :
         BaseService<TModel, TSearch, TDatabase>, ICRUDService<TModel, TSearch, TInsert, TUpdate>
         where TDatabase : class
+        where TSearch : SortQuery
     {
         public CRUDService(TemplateContext context, IMapper mapper, IUriService uriService) : base(context, mapper, uriService)
         {
