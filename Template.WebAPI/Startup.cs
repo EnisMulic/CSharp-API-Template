@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using System.Linq;
+using Template.Contracts.HealthChecks;
 using Template.WebAPI.Installers;
 
 namespace Template.WebAPI
@@ -31,6 +36,25 @@ namespace Template.WebAPI
             }
 
             //app.UseHttpsRedirection();
+            app.UseHealthChecks("/health", new HealthCheckOptions 
+            { 
+                ResponseWriter = async (context, report) =>
+                {
+                    context.Response.ContentType = "application/json";
+                    var response = new HealthCheckResponse
+                    {
+                        Status = report.Status.ToString(),
+                        HealthChecks = report.Entries.Select(x => new HealthCheck()
+                        {
+                            Component = x.Key,
+                            Status = x.Value.ToString(),
+                            Description = x.Value.Description
+                        }),
+                        Duration = report.TotalDuration
+                    };
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
+                } 
+            });
 
             app.UseRouting();
 
