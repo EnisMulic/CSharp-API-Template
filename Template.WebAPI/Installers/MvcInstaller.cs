@@ -21,7 +21,7 @@ namespace Template.WebAPI.Installers
 
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-      
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvcCore().AddApiExplorer().AddNewtonsoftJson(options =>
                 options.SerializerSettings.Converters.Add(new StringEnumConverter()));
             services.AddSwaggerGenNewtonsoftSupport();

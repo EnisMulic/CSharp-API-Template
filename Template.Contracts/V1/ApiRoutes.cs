@@ -15,7 +15,7 @@ namespace Template.Contracts.V1
         {
             public const string Register = Base + "/Auth/Register";
 
-            public const string Authenticate = Base + "/Auth/Auth";
+            public const string Authenticate = Base + "/Auth/Login";
 
             public const string Refresh = Base + "/Auth/Refresh";
         }
