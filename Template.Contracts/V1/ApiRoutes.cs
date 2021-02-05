@@ -31,6 +31,8 @@ namespace Template.Contracts.V1
             public const string Put = Base + "/User";
 
             public const string Delete = Base + "/User";
+
+            public const string Me = Base + "/@me";
         }
     }
 }
