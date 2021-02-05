@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Template.Core.Interfaces;
 
@@ -8,7 +7,7 @@ namespace Template.WebAPI.Controllers.V1
     public class CRUDController<T, TSearch, TInsert, TUpdate> : BaseController<T, TSearch>
     {
         private readonly ICRUDService<T, TSearch, TInsert, TUpdate> _service = null;
-        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service, IMapper mapper) : base(service, mapper)
+        public CRUDController(ICRUDService<T, TSearch, TInsert, TUpdate> service) : base(service)
         {
             _service = service;
         }

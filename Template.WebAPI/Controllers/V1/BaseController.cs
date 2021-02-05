@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Template.Contracts.V1;
@@ -15,12 +14,10 @@ namespace Template.WebAPI.Controllers.V1
     public class BaseController<T, TSearch> : ControllerBase
     {
         private readonly IBaseService<T, TSearch> _service;
-        private readonly IMapper _mapper;
 
-        public BaseController(IBaseService<T, TSearch> service, IMapper mapper)
+        public BaseController(IBaseService<T, TSearch> service)
         {
             _service = service;
-            _mapper = mapper;
         }
 
         [HttpGet]
