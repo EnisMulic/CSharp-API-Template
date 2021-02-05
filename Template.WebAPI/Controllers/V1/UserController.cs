@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Template.Contracts.V1.Requests;
 using Template.Contracts.V1.Responses;
 using Template.Core.Interfaces;
+using Template.WebAPI.Attributes;
 using Template.WebAPI.Extensions;
 
 namespace Template.WebAPI.Controllers.V1
@@ -19,6 +20,7 @@ namespace Template.WebAPI.Controllers.V1
         }
 
         [HttpGet("@me")]
+        [Cached(6000)]
         public async Task<ActionResult<UserResponse>> Me()
         {
             var id = HttpContext.GetUserId();
