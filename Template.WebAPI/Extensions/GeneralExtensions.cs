@@ -1,18 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Linq;
 
 namespace Template.WebAPI.Extensions
 {
     public static class GeneralExtensions
     {
-        public static string GetUserId(this HttpContext httpContext)
+        public static int? GetUserId(this HttpContext httpContext)
         {
             if (httpContext.User == null)
             {
-                return string.Empty;
+                return null;
             }
 
-            return httpContext.User.Claims.Single(x => x.Type == "id").Value;
+            return Convert.ToInt32(httpContext.User.Claims.Single(x => x.Type == "id").Value);
         }
     }
 }
