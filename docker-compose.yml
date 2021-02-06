@@ -12,7 +12,6 @@ services:
       - 1433:1433
     networks:
       - templateappnet
-      - redis
 
     
   template-api:
@@ -29,12 +28,15 @@ services:
       - template-sql
     depends_on:
       - template-sql
+      - redis
 
   redis:
     image: redis
     container_name: redis
     ports: 
       - 6379:6379
+    networks: 
+      - templateappnet
       
 networks:
   templateappnet:

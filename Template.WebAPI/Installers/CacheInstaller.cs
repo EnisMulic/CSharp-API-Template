@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using StackExchange.Redis;
 using Template.Core.Interfaces;
 using Template.Core.Settings;
 using Template.Services;
@@ -24,6 +21,8 @@ namespace Template.WebAPI.Installers
                 return;
             }
 
+            services.AddSingleton<IConnectionMultiplexer>(
+                ConnectionMultiplexer.Connect(redisCacheSettings.ConnectionString));
             services.AddStackExchangeRedisCache(options => 
                 options.Configuration = redisCacheSettings.ConnectionString);
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
