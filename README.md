@@ -9,7 +9,7 @@
 
 ```
 git clone https://github.com/EnisMulic/CSharp-API-Template
-cd Eventi
+cd CSharp-API-Template
 ```
 
 #### Build the Docker Image
@@ -22,6 +22,14 @@ docker-compose build
 ```
 docker-compose up
 ```
+
+* Note:
+If you skip the docker part and try to run the api locally it will fail do to it not being able to connect to redis, to fix this execute
+
+```
+docer run -p 6379:6379 redis
+```
+
 
 ## Project Structure
 
