@@ -11,8 +11,9 @@ namespace Template.WebAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            var redisCacheSettings = new RedisCacheSettings();
-            configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
+            var redisCacheSettings = configuration
+                .GetSection("ResponseCacheService")
+                .Get<RedisCacheSettings>();
 
             services.AddSingleton(redisCacheSettings);
 
@@ -23,8 +24,8 @@ namespace Template.WebAPI.Installers
 
             services.AddSingleton<IConnectionMultiplexer>(
                 ConnectionMultiplexer.Connect(redisCacheSettings.ConnectionString));
-            services.AddStackExchangeRedisCache(options => 
-                options.Configuration = redisCacheSettings.ConnectionString);
+            services.AddStackExchangeRedisCache(i => i.Configuration = redisCacheSettings.ConnectionString);
+           
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
         }
     }
