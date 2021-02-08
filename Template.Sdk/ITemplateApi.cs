@@ -7,19 +7,37 @@ namespace Template.Sdk
 {
     public interface ITemplateApi
     {
-        [Get("/api/User")]
+        [Post("/api/auth/login")]
+        Task<ApiResponse<AuthSuccessResponse>> Login(UserAccountAuthenticationRequest request);
+
+        [Post("/api/auth/register")]
+        Task<ApiResponse<AuthSuccessResponse>> Register(UserAccountRegistrationRequest request);
+        
+        [Post("/api/auth/refresh")]
+        Task<ApiResponse<AuthSuccessResponse>> Refresh(RefreshTokenRequest request);
+
+        [Get("/api/user/@me")]
+        Task<ApiResponse<UserResponse>> GetMeAsync();
+
+        [Get("/api/user")]
         Task<ApiResponse<PagedResponse<UserResponse>>> GetUsersAsync(UserSearchRequest request = default, PaginationQuery pagination = default);
         
-        [Get("/api/User/{id}")]
+        [Get("/api/user/{id}")]
         Task<ApiResponse<UserResponse>> GetUserByIdAsync(int id);
 
-        [Put("/api/User/{id}")]
+        [Post("/api/user/{id}")]
         Task<ApiResponse<UserResponse>> UpdateUserAsync(int id, UserUpdateRequest request);
 
-        [Delete("/api/User/{id}")]
-        Task<ApiResponse<bool>> DeleteKorisnikAsync(int id);
+        [Put("/api/user/{id}")]
+        Task<ApiResponse<UserResponse>> InsertUserAsync(int id, UserInsertRequest request);
 
-        [Get("/api/Role")]
+        [Delete("/api/user/{id}")]
+        Task<ApiResponse<bool>> DeleteUserAsync(int id);
+
+        [Get("/api/role")]
         Task<ApiResponse<PagedResponse<RoleResponse>>> GetRolesAsync();
+        
+        [Get("/api/role/{id}")]
+        Task<ApiResponse<PagedResponse<RoleResponse>>> GetRolesByIdAsync(int id);
     }
 }
